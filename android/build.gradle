@@ -41,22 +41,28 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     // Ensure Java toolchain compatibility
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(17) // Use Java 17
-        }
-    }
+//    java {
+//        toolchain {
+//            languageVersion = JavaLanguageVersion.of(17) // Use Java 17
+//        }
+//    }
 }
 
 kotlin {
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(17)) // Align with Java 17
+        languageVersion.set(JavaLanguageVersion.of(11)) // Align with Java 11
     }
 }
+
+//kotlin {
+//    jvmToolchain {
+//        languageVersion.set(JavaLanguageVersion.of(17)) // Align with Java 17
+//    }
+//}
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
