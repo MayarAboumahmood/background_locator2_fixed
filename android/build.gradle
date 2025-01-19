@@ -2,14 +2,14 @@ group 'yukams.app.background_locator_2'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.9.10' // Update to a newer Kotlin version
+    ext.kotlin_version = '1.9.10'
     repositories {
         google()
-        mavenCentral() // Replace deprecated JCenter
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.1' // Update AGP
+        classpath 'com.android.tools.build:gradle:8.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -17,7 +17,7 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        mavenCentral() // Replace deprecated JCenter
+        mavenCentral()
     }
 }
 
@@ -25,22 +25,36 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 34 // Update to a more recent SDK version
+    compileSdkVersion 34
     namespace 'yukams.app.background_locator_2'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        minSdkVersion 21 // Minimum supported SDK for modern projects
-        targetSdkVersion 34 // Match compile SDK
+        minSdkVersion 21
+        targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
     }
-    kotlinOptions {
-        jvmTarget = "17" // Use a supported JVM target for Kotlin
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    // Ensure Java toolchain compatibility
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17) // Use Java 17
+        }
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(17)) // Align with Java 17
     }
 }
 
