@@ -2,14 +2,14 @@ group 'yukams.app.background_locator_2'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.20'
+    ext.kotlin_version = '1.9.10' // Update to a newer Kotlin version
     repositories {
         google()
-        jcenter()
+        mavenCentral() // Replace deprecated JCenter
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.android.tools.build:gradle:8.2.1' // Update AGP
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -17,7 +17,7 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral() // Replace deprecated JCenter
     }
 }
 
@@ -25,18 +25,22 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 29
-    namespace '"yukams.app.background_locator_2"'
+    compileSdkVersion 34 // Update to a more recent SDK version
+    namespace 'yukams.app.background_locator_2'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 21 // Minimum supported SDK for modern projects
+        targetSdkVersion 34 // Match compile SDK
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
+    }
+    kotlinOptions {
+        jvmTarget = "17" // Use a supported JVM target for Kotlin
     }
 }
 
