@@ -19,17 +19,32 @@ class LocationParserUtil {
             }
 
             return hashMapOf(
-                    Keys.ARG_IS_MOCKED to isMocked,
-                    Keys.ARG_LATITUDE to location.latitude,
-                    Keys.ARG_LONGITUDE to location.longitude,
-                    Keys.ARG_ACCURACY to location.accuracy,
-                    Keys.ARG_ALTITUDE to location.altitude,
-                    Keys.ARG_SPEED to location.speed,
-                    Keys.ARG_SPEED_ACCURACY to speedAccuracy,
-                    Keys.ARG_HEADING to location.bearing,
-                    Keys.ARG_TIME to location.time.toDouble(),
-                    Keys.ARG_PROVIDER to location.provider,
+                Keys.ARG_IS_MOCKED as Any to isMocked,
+                Keys.ARG_LATITUDE as Any to location.latitude,
+                Keys.ARG_LONGITUDE as Any to location.longitude,
+                Keys.ARG_ACCURACY as Any to location.accuracy,
+                Keys.ARG_ALTITUDE as Any to location.altitude,
+                Keys.ARG_SPEED as Any to location.speed,
+                Keys.ARG_SPEED_ACCURACY as Any to speedAccuracy,
+                Keys.ARG_HEADING as Any to location.bearing,
+                Keys.ARG_TIME as Any to location.time.toDouble(),
+                Keys.ARG_PROVIDER as Any to (location.provider ?: "unknown"),
+
+//                Keys.ARG_PROVIDER as Any to location.provider,
             )
+
+//            return hashMapOf(
+//                    Keys.ARG_IS_MOCKED to isMocked,
+//                    Keys.ARG_LATITUDE to location.latitude,
+//                    Keys.ARG_LONGITUDE to location.longitude,
+//                    Keys.ARG_ACCURACY to location.accuracy,
+//                    Keys.ARG_ALTITUDE to location.altitude,
+//                    Keys.ARG_SPEED to location.speed,
+//                    Keys.ARG_SPEED_ACCURACY to speedAccuracy,
+//                    Keys.ARG_HEADING to location.bearing,
+//                    Keys.ARG_TIME to location.time.toDouble(),
+//                    Keys.ARG_PROVIDER to location.provider,
+//            )
         }
 
         fun getLocationMapFromLocation(location: LocationResult?): HashMap<Any, Any>? {
